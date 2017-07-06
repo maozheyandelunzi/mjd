@@ -1,0 +1,396 @@
+@import "base.less";    
+// 
+.client{};
+//声明变量表示主色调
+@jd_color:red;
+//函数用来设置背景图
+.bgc(){
+        background: url("../images/jd-sprites.png");
+        background-size: 200px;
+}
+
+// 头部
+header{
+    width: 100%;
+    height:40px;
+    padding: 5px 70px;
+    background-color: red;
+    position: fixed;
+    z-index: 10;
+    .search{
+       height:100%;
+       position: relative;
+       input{
+           height: 100%;
+           border-radius: 20px;
+           padding-left: 25px;
+       }
+       &:after{
+           content:"";
+           display: block;
+           width: 20px;
+           height: 20px;
+           .bgc();
+           background-position: -60px -110px;
+           position: absolute;
+           top: 6px;
+           left: 6px;
+       }
+    }
+    .logo{
+        width:70px;
+        height: 40px;
+        .bgc();
+        background-position: 0px -110px;
+        position: absolute;
+        top:0px;
+        left: 0px;
+        padding: 10px 5px;
+        background-origin: content-box;
+        background-clip: content-box;
+    }
+    .login{
+       width:70px;
+       height: 40px;
+       position: absolute;
+       right: 0px;
+       top:0px;
+       line-height: 40px;
+       text-align: center;
+       color: white;
+    }
+}
+
+// 轮播区
+.carousel{
+     overflow: hidden;
+     position: relative;
+    .lis-img{
+         width: 1000%;
+        li{
+            width:10%;
+            float: left;
+        }
+        
+    }
+    .lis-index{
+            position: absolute;
+            bottom:5px;
+            left: 50%;
+            transform: translateX(-50%);
+        li{
+            width: 10px;
+            height: 10px;
+            border: 1px solid #fff;
+            float: left;
+            margin-left: 5px;
+            border-radius:50%;
+        }
+        .active{
+            background: white;
+        }
+    }
+}
+
+//导航区
+.nav{
+   li{
+       float: left;
+       width: 25%;
+       >a{
+           width:100%;
+           padding: 5px 0px;
+           text-align: center;
+           color: #666666;
+           font-size: 14px;
+           >img{
+              width: 40px;
+              margin: 0 auto; 
+           }
+       }
+   }
+}
+//横线
+.line{
+    height: 10px;
+    background:#f5f5f5;
+}
+//掌上秒杀
+.second-kill{
+    .second-header{
+      position: relative;
+      .clock{
+      .bgc();
+      background-position: -85px -110px;
+      display: inline-block;
+      width: 18px;
+      height: 22px;
+      position: absolute;
+      left: 5px;
+      top:2px;
+   }
+   .kill_title{
+       color: @jd_color;
+       margin-left: 30px;
+   }
+   .kill_time{
+       display: inline-block;
+       font-size:0;
+       span{
+           color: white;
+           background: #3d3d3d;
+           padding: 0px 2px;
+           font-size:14px;
+           margin-left: 4px; 
+       }
+       >span:nth-child(3n){
+           background: white;
+           color: #3d3d3d;
+       }
+   }
+   >a{
+       float: right;
+   }
+    }
+   .kill_info{
+           li{
+               width: 33%;
+               float: left;
+               position: relative;
+               >a{
+                   text-align: center;
+                   >p{
+                       color: @jd_color;
+                   }
+                   del{
+                       color: #ccc;
+                   }
+               }
+               >span{
+                   position: absolute;
+                   color: white;
+                   padding: 3px 3px;
+                   background: #fdb60a;
+                   bottom:60px;
+                   right: 10px;
+                   border-radius: 20px;
+               }
+           }
+   }
+
+}
+
+//618特卖区
+.festival{
+    position: relative;
+   ul{
+       position: absolute;
+       bottom:5px;
+       li{
+           float: left;
+           width: 50%;
+           padding-left: 2px;
+       }
+   }
+}
+
+//活动专区
+.active{
+    ul{
+        li{
+            float: left;
+            width: 50%;
+        }
+        li:nth-child(-n+3){
+            width: 33.3%;
+        }
+    } 
+}
+//标题样式
+.title_title{
+    color: red;
+    height: 20px;
+    margin:5px 10px;
+}
+//广告区
+.ad{
+  padding: 5px;
+}
+
+//特色超市
+.market{
+   ul{
+       li{
+           float: left;
+           width: 50%;
+       }
+       li:nth-child(4){
+           clear: both;
+       }
+   }
+}
+
+//主题街 
+.theme{
+    .theme_content{
+        li{
+            width: 25%;
+            float: left;
+        }
+        li:nth-child(-n+2){
+            width: 50%;
+        }
+        li:nth-child(5){
+            clear: both;
+        }
+    }
+}
+
+//品牌推荐
+.recommend{
+    li{
+        width: 30%;
+        float: left;
+    }
+    li:nth-of-type(1){
+        width: 40%;
+    }
+}
+//猜你喜欢
+.youlike{
+    .youlike_title{
+        position: relative;
+       
+        a{
+            position: absolute;
+            top:0px;
+            right: 0px;
+          img{
+                display: inline-block;
+                width:18px;
+                vertical-align: middle; 
+          } 
+    }
+ }
+ .youlike_info{
+     li{ 
+         font-size: 14px;
+         margin-bottom: 10px;
+         float: left;
+         width: 50%;
+         .info-top{
+             margin-bottom: 5px;
+              span{
+                  padding-left: 10px;
+              }
+             >a{
+                 float: right;
+                 border: 1px solid #ccc;
+                 margin-right: 10px;
+             }
+            
+         }
+         >a{
+           padding: 5px;
+           p{
+                 height: 42px;
+                 overflow: hidden;
+                 border-bottom: 1px solid #ccc;
+             }
+             img{
+                 width: 80%;
+                 margin: 0 auto;
+             }
+         }
+          
+     }
+ }
+}
+//尾部
+.trail{
+    color: #666;
+    background:#f3f5f7;
+    .trail-load{
+       text-align: center;
+       padding: 10px 0px;
+    }
+    .trail-link{
+        border-bottom: 1px solid #ccc;
+          a{
+              float: left;
+              width: 25%;
+              text-align: center;
+              padding: 5px 0px;
+              span{
+                  display: inline-block;
+                  width: 100%;
+                 border-right:1px solid #ccc; 
+              }
+        
+          }
+          a:nth-of-type(4) span{
+                  border: none;
+              }
+    }
+    .trail-device{
+       ul{
+           li{
+               width: 33.3%;
+               float: left;
+               padding: 15px 0px;
+               a{
+                   span{
+                       display: block;
+                       margin: 0 auto;
+                   }
+                   p{
+                       text-align: center;
+                   }
+               }
+               
+           }
+           li:nth-of-type(1) a span{
+
+                   .bgc();
+                   width: 33px;
+                   height: 33px;
+                   background-position: -40px -70px;
+           }
+                      li:nth-of-type(2) a span{
+
+                   .bgc();
+                   width: 33px;
+                   height: 33px;
+                   background-position: -80px -70px;
+           }
+                      li:nth-of-type(3) a span{
+
+                   .bgc();
+                   width: 33px;
+                   height: 33px;
+                   background-position: -120px -70px;
+           }
+       }
+    }
+    .copyright{
+         padding: 10px 0px;
+         text-align: center; 
+    }
+}
+
+//底部
+footer{
+      
+    background: white;
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    width: 100%;
+    .foot_lis{
+        li{ 
+            width: 20%; 
+            float: left;
+            
+        }
+    }
+}

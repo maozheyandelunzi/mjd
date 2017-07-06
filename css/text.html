@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    div{
+        width: 300px;
+        height: 300px;
+        background:red;
+    }
+    </style>
+</head>
+<body>
+    <div>
+        
+    </div>
+    <script>
+        
+        //封装移动端点击事件 格式通过注册点击事件及绑定事件
+// lun(dom).tap(function(){}) =>lun(dom)为返回一个对象的函数  tap()为对象的方法 
+//function(){}为一个tap()里的参数(也就是一个回调函数)
+  function lun(dom) { 
+      var obj={
+          tap:function(callback) { 
+                    /*
+                    1 ：判断手指的个数
+                    2 : 滑动距离不能太大  >5 
+                    3 : 按下的时间不能太长  < 500
+                    */
+                    //声明变量
+                    var timed ,Xed,Yed;    
+              dom.addEventListener("touchstart",function (e) { 
+                      //注册手指刚触摸事件,获取当前的目标元素触摸集合的length
+                    // console.log(e.targetTouches[0]);
+                    //如果触摸的集合的个数小于一时return
+                    if(e.targetTouches.length>1){
+                        return;
+                    }
+                    //获取当前的时间
+                    timed =Date.now();                    
+                    //获取当前的距离
+                    Xed=e.targetTouches[0].clientX;
+                    Yed=e.targetTouches[0].clientY;
+                    // console.log(Xed)
+               })
+               dom.addEventListener("touchend",function (e) { 
+                   //判断手指个数
+                   if(e.changedTouches.length>1){
+                       return;
+                   }
+                    //获取当前时间
+                    var timing=Date.now();
+                    if(timing-timed>500){
+                        return;
+                    }
+                    //获取当前的位置
+                    var Xing=e.changedTouches[0].clientX;
+                    var Ying=e.changedTouches[0].clientY;
+                    //进行比较
+                    if(Math.abs(Xing-Xed)>5){
+                        return;
+                    }
+                    if(Math.abs(Ying-Yed)>5){
+                        return;
+                    }
+                      callback(); 
+                })
+           },
+           swipe:function(callback){
+                            /*
+                1 ：判断手指的个数
+                2 : 滑动距离不能太小  >5 
+                3 : 按下的时间不能太长  <1000
+                */
+                var startTime,startX,startY;
+                //绑定事件用于获取刚按下时的时间位置
+                dom.addEventListener("touchstart",function (e) { 
+                     //判断手指个数
+                     if(e.targetTouches.length>1){
+                         return;
+                     }
+                     //记录时间
+                     startTime=Date.now();
+                     //获取位置
+                     startX=e.targetTouches[0].clientX;
+                     startY=e.targetTouches[0].clientY;
+                 })
+                 //绑定事件用与按下后的状态
+                 dom.addEventListener("touchend",function (e) { 
+                     //判断手指
+                     if(e.changedTouches.length>1){
+                         return;
+                     }
+                     //记录时间
+                     var endTime=Date.now();
+                     //判断时间
+                     if(endTime-startTime>1000){
+                         return;
+                     }
+                    //记录位置
+                    var endX=e.changedTouches[0].clientX;
+                    var endY=e.changedTouches[0].clientY;
+                    //声明变量储存方向的数据
+                    var direction;
+                    //判断位置
+                    if(Math.abs(endX-startX)>5){
+                      direction=endX>startX ? "right":"left";
+                    }else if(Math.abs(endY-startY)>5){
+                        direction=endY>startY ? "top":"buttom"
+                    }else{
+                        return;
+                    }
+                    //回调函数
+                    callback(direction);
+                  })
+           }
+      };
+      return obj;
+   }
+   var dom=document.querySelector("div");
+   lun(dom).tap(function() {
+       console.log("你好!"); 
+   })
+   lun(dom).swipe(function (direction) { 
+       console.log(direction); 
+    })
+    </script>
+</body>
+</html>
